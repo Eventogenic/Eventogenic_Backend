@@ -1,4 +1,5 @@
-require("dotenv").config({ path: "./config/config.env" });
+require("dotenv").config();
+// { path: "./config/config.env" }
 
 const NODE_ENV = process.env.NODE_ENV || "development";
 const PORT = process.env.PORT || 3001;
