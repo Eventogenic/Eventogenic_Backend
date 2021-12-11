@@ -5,6 +5,7 @@ const connectDatabase = require("./config/dataBase");
 const errorHandler = require("./middlewares/errorHandler");
 const ErrorResponse = require("./classes/errorResponse");
 const logger = require("morgan");
+const config = require("./config/default");
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -19,6 +20,7 @@ const organizerRouters = require("./routes/organizerRouters");
 const studentRouters = require("./routes/studentRouters");
 const outdoorStudentRouters = require("./routes/outdoorStudentRouters");
 const indoorStudentRouters = require("./routes/indoorStudentRouters");
+const { DOCUMENTATION_URL, APP_NAME } = config.APP;
 
 app.use("/api/v1/admin", adminRouters);
 app.use("/api/v1/organizer", organizerRouters);
@@ -26,6 +28,16 @@ app.use("/api/v1/student", studentRouters);
 app.use("/api/v1/outdoor-student", outdoorStudentRouters);
 app.use("/api/v1/indoor-student", indoorStudentRouters);
 
+// Welcome Message
+app.get("/",(req,res)=>{
+  res.send(`Welcome to ${APP_NAME}`);
+})
+
+// Documentation
+app.get("/documentation",(req,res)=>{
+  res.redirect(301,DOCUMENTATION_URL);
+})
+// git commit -am "Documentation added"
 // 404 Route
 app.use("*", (req, res, next) => {
   return next(new ErrorResponse("Not Found", 404));

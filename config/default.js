@@ -1,11 +1,19 @@
 require("dotenv").config();
 // { path: "./config/config.env" }
 
+const APP_NAME = process.env.APP_NAME || "Eventogenic";
+const DOCUMENTATION_URL = process.env.DOCUMENTATION_URL || "https://documenter.getpostman.com/view/18749121/UVR4PqL6"
+
+const APP = {
+  APP_NAME,
+  DOCUMENTATION_URL
+}
+
 const NODE_ENV = process.env.NODE_ENV || "development";
 const PORT = process.env.PORT || 3001;
 const ACCESS_TOKEN_EXPIRE = process.env.ACCESS_TOKEN_EXPIRE || 86400000; // 1 day
 const SERVER_HOST =
-  process.env.SERVER_HOST || "https://but-jsd-4.herokuapp.com";
+  process.env.SERVER_HOST || "https://eventogenic.herokuapp.com";
 
 const SERVER = {
   NODE_ENV,
@@ -22,7 +30,7 @@ const MONGO = {
 };
 
 const CLIENT_HOST =
-  process.env.CLIENT_HOST || "https://but-jsd-4.herokuapp.com";
+  process.env.CLIENT_HOST || "https://eventogenic.netlify.app";
 
 const CLIENT = {
   CLIENT_HOST,
@@ -61,6 +69,7 @@ const config = {
   MONGO,
   JWT,
   SENDGRID,
+  APP
 };
 
 module.exports = config;
